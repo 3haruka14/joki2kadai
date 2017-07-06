@@ -1,7 +1,7 @@
 function update(event) {
   let output = document.querySelector("#kaito");
   let input = event.target;
-  output.value = input.value;
+  output.textContent = input.value;
 }
 
 function enableInput() {
@@ -13,7 +13,7 @@ function reset() {
   let input = document.querySelector("#nyuryoku");
   let output = document.querySelector("#kaito");
   input.value = "";
-  output.value = "";
+  output.textContent = "";
 }
 
 function enableResetButton() {
