@@ -4,20 +4,25 @@
 <head>
   <title>アラビヤ語で遊ぼう</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="quiz.css">
   <script src="quiz.js"></script>
 </head>
 
 <body>
   <div class="container">
-    <h1>アラビヤ語</h1>
-    <div>
-      <div id="mondai"></div>
-      <div><textarea id="nyuryoku"></textarea></div>
-      <div id="kaito"></div>
-    </div>
-    <div class="controls">
-      <button>リセット</button>
+    <h1><span class="aso">سالعب</span> <span class="ara">العربية</span></h1>
+    <div id="quiz">
+      <div id="kuma"><img src="img/start.png" alt="start" class="img"></div>
+      <div id="right">
+        <p id="mondai"></p>
+        <div><textarea id="nyuryoku"></textarea></div>
+        <p id="kaito"></p>
+        <p id="seikai"></p>
+      </div>
+      <div class="controls">
+        <button id="reset">リセット</button>
+        <button id="ok">OK</button>
+      </div>
     </div>
   </div>
 </body>
