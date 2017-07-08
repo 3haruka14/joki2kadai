@@ -10,8 +10,16 @@ qa[5]=["お歳を伺っても構いませんか","هَلْ لِي أَنْ أَ�
 function update(event) {
   let output = document.querySelector("#kaito");
   let input = event.target;
-  output.textContent = input.value;
+  let hatsuon = input.value.split("");
+  console.log(hatsuon);
+  let kekka = "";
+  hatsuon.forEach(function (value) {
+  kekka = kekka +value+ "ggg";
+  output.textContent = kekka;
+});
 }
+
+
 
 function enableInput() {
   let input = document.querySelector("#nyuryoku");
@@ -54,11 +62,11 @@ function watchKeyInput(event) {
     hantei();
   }
 }
-
 function enableSubmitByEnter() {
   let input = document.querySelector("#nyuryoku");
   input.addEventListener("keypress", watchKeyInput);
 }
+
 
 function imageupdate(){
   document.getElementById("img").src = "img/houki.png";
