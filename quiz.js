@@ -1,5 +1,5 @@
 qa = new Array();
-qa[0]=["今何時ですか？","كم الساعة الآن؟"];
+qa[0]=["今何時ですか？","كم الساعة الآن؟","كَم السَّاعَة الْآنَ؟","كَمِ السَّاعَةُ الْآنَ؟"];
 qa[1]=["昼の３時５分前です","السَّاعَةُ الثَّالِثَةُ إِلَّا خَمْسَ دَقَائِقَ عَصْرًا"]
 qa[2]=["そろそろ失礼します","أَسْتَأْذِنُ الْآنَ"]
 qa[3]=["日本の印象はいかがですか？","مَا هُوَ انْطِبَاعُكَ عَنْ الْيَابَانِ؟"]
@@ -22,29 +22,56 @@ function enableInput() {
   input.addEventListener("keyup", update);
 }*/
 
+
+function mondai2(){
+  let input = document.querySelector("#nyuryoku");
+  let output = document.querySelector("#seikai");
+  // document.getElementById("nyuryoku").placeholder = "";
+  console.log(input);
+  console.log(qa[0][1]);
+  input.value = qa[0][1];
+  console.log(input.value);
+  imageupdate();
+  output.textContent = "";
+}
+
+function watchKeyInput2(event){
+  if(event.keyCode == 13){
+    mondai2();
+  }
+}
+
 function hantei(){
   let input = document.querySelector("#nyuryoku");
   let kotae = qa[0][1];
   console.log(input.value);
   let output = document.querySelector("#seikai");
-  if(input.textContent == kotae){
+  if(input.value == kotae){
     output.textContent = "○　"+kotae;
     next();
   }else{
     output.textContent = "×　"+kotae;
+    out();
   }
 }
 
 function reset() {
   let input = document.querySelector("#nyuryoku");
-  let output = document.querySelector("#kaito");
+  let output = document.querySelector("#seikai");
   input.value = "";
-  output.textContent = "";
+  output.value = "";
 }
 
 function next(){
   document.getElementById("img").src="img/next.png";
-  document.getElementById("img").src="img/next.png";
+  let enter = document.querySelector("#nyuryoku");
+  enter.addEventListener("keypress", watchKeyInput2);
+}
+
+function out(){
+  document.getElementById("img").src="img/batsu.png";
+  let enter = document.querySelector("#nyuryoku");
+  enter.addEventListener("keypress", watchKeyInput2);
 }
 
 function mondai(){
@@ -66,7 +93,7 @@ function enableSubmitByEnter() {
 
 function imageupdate(){
   document.getElementById("img").src = "img/houki.png";
-  document.getElementById("img").onclick = reset();
+  document.getElementById("img").onclick = reset;
 }
 
 function kumachange(){
@@ -75,7 +102,6 @@ function kumachange(){
 }
 
 function main() {
-    //enableInput();
     enableSubmitByEnter();
     mondai();
     kumachange();
