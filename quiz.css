@@ -78,7 +78,7 @@ width:200px;}
 	/*border-right: dotted thin #ff5964;*/
   padding:0 0px 0 20px;
 }
-.img
+#img
 {margin:0 0 0 -70px;}
 
 #right
@@ -106,7 +106,7 @@ margin-right:10px;
 font-size:25px;
 line-height: 1.5em;
 resize: none; 
-
+width:28em;
 	}
 
 #kaito {height:50px;

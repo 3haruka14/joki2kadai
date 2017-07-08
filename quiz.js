@@ -1,6 +1,10 @@
 qa = new Array();
-qa[0]=["今何時ですか。","كم الساعة الآن؟"];
-qa[1]=["昼の３時５分前です。","الساعة الثالِثة إلا خمس دقائق عصرا"]
+qa[0]=["今何時ですか？","كم الساعة الآن؟"];
+qa[1]=["昼の３時５分前です","السَّاعَةُ الثَّالِثَةُ إِلَّا خَمْسَ دَقَائِقَ عَصْرًا"]
+qa[2]=["そろそろ失礼します","أَسْتَأْذِنُ الْآنَ"]
+qa[3]=["日本の印象はいかがですか？","مَا هُوَ انْطِبَاعُكَ عَنْ الْيَابَانِ؟"]
+qa[4]=["それ（食事）が、とても美味しくて驚きました（感動しました）","إِنًّهُ لَذِيذٌ جِدًّا، وَقَدْ أَعْجَبَنِي تَنَوُّعُهُ"]
+qa[5]=["お歳を伺っても構いませんか","هَلْ لِي أَنْ أَسْأَلَكَ عَنْ عُمْرِكَ؟"]
 
 
 function update(event) {
@@ -19,10 +23,12 @@ function hantei(){
   let kotae = qa[0][1];
   console.log(input.textContent);
   let output = document.querySelector("#seikai");
-  if(input.textContent == kotae)
-  { output.textContent = "正解";}
-    else{
-    output.textContent = "不正解";}
+  if(input.textContent == kotae){
+    output.textContent = "正解";
+    next();
+  }else{
+    output.textContent = "不正解";
+  }
 }
 
 function reset() {
@@ -32,11 +38,9 @@ function reset() {
   output.textContent = "";
 }
 
-function enableResetButton() {
-  let rbutton = document.querySelector("#reset");
-  rbutton.addEventListener("click", reset);
+function next(){
+  document.getElementById("img").src="img/next.png";
 }
-
 
 function mondai(){
   let input = document.querySelector("#mondai");
@@ -55,10 +59,25 @@ function enableSubmitByEnter() {
   input.addEventListener("keypress", watchKeyInput);
 }
 
+function imageupdate(){
+  document.getElementById("img").src="img/houki.png"; 
+}
+
+function kumachange(){
+  let input = document.querySelector("#kuma");
+  input.addEventListener("click",imageupdate);
+}
+
 function main() {
-    enableResetButton();
     enableInput();
     enableSubmitByEnter();
+    mondai();
+    kumachange();
 };
 
-window.addEventListener("load", main);
+function home(){
+let input = document.querySelector("#mondai");
+input.textContent = "くまを押したらスタート！";
+}
+
+window.addEventListener("load", home);
