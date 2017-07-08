@@ -49,6 +49,10 @@ function watchKeyInput(event) {
     hantei();
   }
 }
+function enableSubmitByEnter() {
+  let input = document.querySelector("#nyuryoku");
+  input.addEventListener("keypress", watchKeyInput);
+}
 
 
 function main() {
