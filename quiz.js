@@ -6,8 +6,16 @@ qa[1]=["昼の３時５分前です。","الساعة الثالِثة إلا خ
 function update(event) {
   let output = document.querySelector("#kaito");
   let input = event.target;
-  output.textContent = input.value;
+  let hatsuon = input.value.split("");
+  console.log(hatsuon);
+  let kekka = "";
+  hatsuon.forEach(function (value) {
+  kekka = kekka +value+ "ggg";
+  output.textContent = kekka;
+});
 }
+
+
 
 function enableInput() {
   let input = document.querySelector("#nyuryoku");
@@ -58,6 +66,7 @@ function enableSubmitByEnter() {
 function main() {
     enableInput();
     enableSubmitByEnter();
+    mondai();
 };
 
 window.addEventListener("load", main);
