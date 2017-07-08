@@ -34,14 +34,10 @@ function enableResetButton() {
   let rbutton = document.querySelector("#reset");
   rbutton.addEventListener("click", reset);
 }
-function Ok() {
-  let okbutton = document.querySelector("#ok");
-  okbutton.addEventListener("click", hantei);
-}
+
 
 function main() {
     enableResetButton();
-    Ok();
     enableInput();
 };
 

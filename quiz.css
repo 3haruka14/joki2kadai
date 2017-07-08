@@ -53,7 +53,7 @@ h1{
 
 }
 
-#clear{float:right;
+#reset{float:right;
 z-index:2;
 width:200px;}
 
@@ -150,9 +150,8 @@ color:gray;}
 #6e44ff*/
 
 #omake
-{margin:50px ,50px,50px,50px;
-	display:none;
-}
+{margin:50px;
+	display:none;}
 
 .kan{text-decoration:underline;
 color:#ff1053;}
