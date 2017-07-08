@@ -27,11 +27,11 @@ function hantei(){
   let kotae = qa[0][1];
   console.log(input.value);
   let output = document.querySelector("#seikai");
-  if(input.value == kotae){
-    output.textContent = "正解";
+  if(input.textContent == kotae){
+    output.textContent = "○　"+kotae;
     next();
   }else{
-    output.textContent = "不正解";
+    output.textContent = "×　"+kotae;
   }
 }
 
