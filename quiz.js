@@ -1,5 +1,5 @@
 qa = new Array();
-qa[0]=["パンはパンでも食べられないパンなーんだ？","フライパン"];
+qa[0]=["今何時ですか。","كم الساعة الآن؟"];
 qa[1]=[""]
 
 
@@ -44,9 +44,21 @@ function mondai(){
   input.textContent = question;
 }
 
+function watchKeyInput(event) {
+  if (event.keyCode == 13) {
+    hantei();
+  }
+}
+
+function enableSubmitByEnter() {
+  let input = document.querySelector("#nyuryoku");
+  input.addEventListener("keypress", watchKeyInput);
+}
+
 function main() {
     enableResetButton();
     enableInput();
+    enableSubmitByEnter();
 };
 
 window.addEventListener("load", main);
