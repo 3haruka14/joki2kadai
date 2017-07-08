@@ -36,10 +36,7 @@ function enableResetButton() {
   let rbutton = document.querySelector("#reset");
   rbutton.addEventListener("click", reset);
 }
-function Ok() {
-  let okbutton = document.querySelector("#ok");
-  okbutton.addEventListener("click", hantei);
-}
+
 
 function mondai(){
   let input = document.querySelector("#mondai");
@@ -60,8 +57,6 @@ function enableSubmitByEnter() {
 
 function main() {
     enableResetButton();
-    mondai();
-    Ok();
     enableInput();
     enableSubmitByEnter();
 };
