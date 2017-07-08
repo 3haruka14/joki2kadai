@@ -6,17 +6,13 @@ qa[3]=["日本の印象はいかがですか？","مَا هُوَ انْطِبَ
 qa[4]=["それ（食事）が、とても美味しくて驚きました（感動しました）","إِنًّهُ لَذِيذٌ جِدًّا، وَقَدْ أَعْجَبَنِي تَنَوُّعُهُ"]
 qa[5]=["お歳を伺っても構いませんか","هَلْ لِي أَنْ أَسْأَلَكَ عَنْ عُمْرِكَ؟"]
 
-
+/*
 function update(event) {
   let output = document.querySelector("#kaito");
   let input = event.target;
   let hatsuon = input.value.split("");
   console.log(hatsuon);
-  let kekka = "";
-  hatsuon.forEach(function (value) {
-  kekka = kekka +value+ "ggg";
-  output.textContent = kekka;
-});
+    output.textContent = input.value;
 }
 
 
@@ -24,14 +20,14 @@ function update(event) {
 function enableInput() {
   let input = document.querySelector("#nyuryoku");
   input.addEventListener("keyup", update);
-}
+}*/
 
 function hantei(){
-  let input = document.querySelector("#kaito");
+  let input = document.querySelector("#nyuryoku");
   let kotae = qa[0][1];
-  console.log(input.textContent);
+  console.log(input.value);
   let output = document.querySelector("#seikai");
-  if(input.textContent == kotae){
+  if(input.value == kotae){
     output.textContent = "正解";
     next();
   }else{
@@ -79,7 +75,7 @@ function kumachange(){
 }
 
 function main() {
-    enableInput();
+    //enableInput();
     enableSubmitByEnter();
     mondai();
     kumachange();
