@@ -98,25 +98,28 @@ margin:0 0 0 360px ;}
 
 #nyuryoku
 {height:50px;
-	border: dotted thin #ff5964;
-	clear:both;
-	overflow: hidden;
-	direction: rtl;
-margin-right:100px;
+border: dotted thin #ff5964;
+clear:both;
+overflow: hidden;
+direction: rtl;
+margin-right:10px;
 font-size:25px;
+line-height: 1.5em;
+resize: none; 
+
 	}
 
 #kaito {height:50px;
-padding-left:100px;
-padding-right:100px;
+padding-left:10px;
+padding-right:20px;
 direction: rtl;
 unicode-bidi: bidi-override;
 border-bottom: dotted thin #ff5964;}
 
 #seikai
  {height:100px;
-	 padding-left:100px;
-	 padding-right:100px;
+	 padding-left:10px;
+	 padding-right:20px;
  color:#ff1053;
 direction: rtl;
 border-bottom: dotted thin #ff5964;}
