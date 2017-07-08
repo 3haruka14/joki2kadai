@@ -32,10 +32,10 @@ function hantei(){
   console.log(input.textContent);
   let output = document.querySelector("#seikai");
   if(input.textContent == kotae){
-    output.textContent = "正解";
+    output.textContent = "○　"+kotae;
     next();
   }else{
-    output.textContent = "不正解";
+    output.textContent = "×　"+kotae;
   }
 }
 
@@ -88,7 +88,6 @@ function main() {
 function home(){
 let input = document.querySelector("#mondai");
 input.textContent = "くまを押したらスタート！";
-main();
 }
 
 window.addEventListener("load", home);
