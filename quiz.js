@@ -29,7 +29,7 @@ function mondai2(){
   // document.getElementById("nyuryoku").placeholder = "";
   console.log(input);
   console.log(qa[0][1]);
-  input.value = qa[0][1];
+  input.value = qa[0][2];
   console.log(input.value);
   imageupdate();
   output.textContent = "";
