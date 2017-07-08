@@ -3,7 +3,7 @@ h1{
   grid-row: 1;
   text-align: center;
 }
-textarea{
+input{
   height: 40rem;
   width: 100%;
 }
