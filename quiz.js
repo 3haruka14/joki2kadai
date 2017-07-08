@@ -1,5 +1,6 @@
 qa = new Array();
 qa[0]=["パンはパンでも食べられないパンなーんだ？","フライパン"];
+qa[1]=[""]
 
 
 function update(event) {
@@ -16,6 +17,7 @@ function enableInput() {
 function hantei(){
   let input = document.querySelector("#kaito");
   let kotae = qa[0][1];
+  console.log(input.textContent);
   let output = document.querySelector("#seikai");
   if(input.textContent == kotae)
   { output.textContent = "正解";}
@@ -39,8 +41,15 @@ function Ok() {
   okbutton.addEventListener("click", hantei);
 }
 
+function mondai(){
+  let input = document.querySelector("#mondai");
+  let question = qa[0][0];
+  input.textContent = question;
+}
+
 function main() {
     enableResetButton();
+    mondai();
     Ok();
     enableInput();
 };
