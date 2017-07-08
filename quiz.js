@@ -59,9 +59,9 @@ function hantei() {
 
 function reset() {
   let input = document.querySelector("#nyuryoku");
-  let output = document.querySelector("#kaito");
+  let output = document.querySelector("#seikai");
   input.value = "";
-  output.textContent = "";
+  output.value = "";
 }
 
 function next() {
@@ -71,12 +71,21 @@ function next() {
   count++;
   if (count%2==1){
   if (count < q_max) {
-    quiz();
-  } else {
+    quiz();}
+     else {
     let input = document.querySelector("#mondai");
-    input.textContent = "お疲れ様でした";
-  }}
+    input.textContent = "お疲れ様でした";}}}
 
+function next(){
+  document.getElementById("img").src="img/next.png";
+  let enter = document.querySelector("#nyuryoku");
+  enter.addEventListener("keypress", watchKeyInput2);
+}
+
+function out(){
+  document.getElementById("img").src="img/batsu.png";
+  let enter = document.querySelector("#nyuryoku");
+  enter.addEventListener("keypress", watchKeyInput2);
 }
 
 function mondai() {
@@ -101,7 +110,7 @@ function enableSubmitByEnter() {
 
 function imageupdate() {
   document.getElementById("img").src = "img/houki.png";
-  document.getElementById("img").onclick = reset();
+  document.getElementById("img").onclick = reset;
 }
 
 function kumachange() {
