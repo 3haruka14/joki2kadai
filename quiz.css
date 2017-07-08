@@ -13,7 +13,7 @@ h1{
 
 .aso{color:#66c7f4;	font-size:50px;}
 .ara{color:#ff1053;}
-#kaito{color:red;}
+.kazu{color:red; direction: rtl;}
 
 #container {
 	display: -webkit-box;
@@ -112,7 +112,6 @@ width:28em;
 #kaito {height:50px;
 padding-left:10px;
 padding-right:20px;
-direction: rtl;
 unicode-bidi: bidi-override;
 border-bottom: dotted thin #ff5964;}
 
