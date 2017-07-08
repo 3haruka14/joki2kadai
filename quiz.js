@@ -88,6 +88,7 @@ function main() {
 function home(){
 let input = document.querySelector("#mondai");
 input.textContent = "くまを押したらスタート！";
+main();
 }
 
 window.addEventListener("load", home);
