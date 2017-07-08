@@ -40,6 +40,7 @@ function reset() {
 
 function next(){
   document.getElementById("img").src="img/next.png";
+  document.getElementById("img").src="img/next.png";
 }
 
 function mondai(){
@@ -60,7 +61,8 @@ function enableSubmitByEnter() {
 }
 
 function imageupdate(){
-  document.getElementById("img").src="img/houki.png"; 
+  document.getElementById("img").src = "img/houki.png";
+  document.getElementById("img").onclick = reset();
 }
 
 function kumachange(){
