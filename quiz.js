@@ -50,13 +50,8 @@ function watchKeyInput(event) {
   }
 }
 
-function enableSubmitByEnter() {
-  let input = document.querySelector("#nyuryoku");
-  input.addEventListener("keypress", watchKeyInput);
-}
 
 function main() {
-    enableResetButton();
     enableInput();
     enableSubmitByEnter();
 };
