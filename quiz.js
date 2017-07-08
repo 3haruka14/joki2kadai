@@ -1,3 +1,7 @@
+qa = new Array();
+qa[0]=["パンはパンでも食べられないパンなーんだ？","フライパン"];
+
+
 function update(event) {
   let output = document.querySelector("#kaito");
   let input = event.target;
@@ -9,6 +13,16 @@ function enableInput() {
   input.addEventListener("keyup", update);
 }
 
+function hantei(){
+  let input = document.querySelector("#kaito");
+  let kotae = qa[0][1];
+  let output = document.querySelector("#seikai");
+  if(input.textContent == kotae)
+  { output.textContent = "正解";}
+    else{
+    output.textContent = "不正解";}
+}
+
 function reset() {
   let input = document.querySelector("#nyuryoku");
   let output = document.querySelector("#kaito");
@@ -17,12 +31,17 @@ function reset() {
 }
 
 function enableResetButton() {
-  let button = document.querySelector("button");
-  button.addEventListener("click", reset);
+  let rbutton = document.querySelector("#reset");
+  rbutton.addEventListener("click", reset);
+}
+function Ok() {
+  let okbutton = document.querySelector("#ok");
+  okbutton.addEventListener("click", hantei);
 }
 
 function main() {
     enableResetButton();
+    Ok();
     enableInput();
 };
 
