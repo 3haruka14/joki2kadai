@@ -1,10 +1,10 @@
 qa = new Array();
-qa[0] = ["今何時ですか？", "كم الساعة الآن؟"];
-qa[1] = ["昼の３時５分前です", "السَّاعَةُ الثَّالِثَةُ إِلَّا خَمْسَ دَقَائِقَ عَصْرًا"];
-qa[2] = ["そろそろ失礼します", "أَسْتَأْذِنُ الْآنَ"];
-qa[3] = ["日本の印象はいかがですか？", "مَا هُوَ انْطِبَاعُكَ عَنْ الْيَابَانِ؟"];
-qa[4] = ["それ（食事）が、とても美味しくて驚きました（感動しました）", "إِنًّهُ لَذِيذٌ جِدًّا، وَقَدْ أَعْجَبَنِي تَنَوُّعُهُ"];
-qa[5] = ["お歳を伺っても構いませんか", "هَلْ لِي أَنْ أَسْأَلَكَ عَنْ عُمْرِكَ؟"];
+qa[0]=["今何時ですか？","كم الساعة الآن؟","كَم السَّاعَة الْآنَ؟","كَمِ السَّاعَةُ الْآنَ؟"];
+qa[1]=["昼の３時５分前です","السَّاعَةُ الثَّالِثَةُ إِلَّا خَمْسَ دَقَائِقَ عَصْرًا"]
+qa[2]=["そろそろ失礼します","أَسْتَأْذِنُ الْآنَ"]
+qa[3]=["日本の印象はいかがですか？","مَا هُوَ انْطِبَاعُكَ عَنْ الْيَابَانِ؟"]
+qa[4]=["それ（食事）が、とても美味しくて驚きました（感動しました）","إِنًّهُ لَذِيذٌ جِدًّا، وَقَدْ أَعْجَبَنِي تَنَوُّعُهُ"]
+qa[5]=["お歳を伺っても構いませんか","هَلْ لِي أَنْ أَسْأَلَكَ عَنْ عُمْرِكَ؟"]
 
 jo = ["الْأَوَّلٌ", "الثَّانِـي", "الثَّالِثُ", "الـرَّابِعُ", "الْحَامِسُ", "السَّادِسُ", "السَّابِعُ", "الثَّامِنُ", "التَّاسِعُ", "الْعَاشِرُ"];
 //初期設定
@@ -17,6 +17,9 @@ function setReady() {
   if (sewa == 1) { osewa(); }
   count = 0;
   kekka = 0;
+  mode = 0;
+  mode2 = 0;
+  w2c=0;
   ansers = new Array(); //解答記録
   arr = [1, 2, 3, 4, 5, 0];
   randArr = [];
@@ -28,69 +31,144 @@ function setReady() {
   }
   home();
 }
-/*
-function update(event) {
-  let output = document.querySelector("#kaito");
-  let input = event.target;
-  let hatsuon = input.value.split("");
-  console.log(hatsuon);
-    output.textContent = input.value;
+
+function mondai2(){
+  mode = 1;
+  let qn = randArr[count];
+  let teidai = document.querySelector("#mondai");
+  let el = document.createElement("p");
+  el.textContent = "この文章のすべての文字に発音記号をつけてください";
+  teidai.appendChild(el);
+
+  let input = document.querySelector("#nyuryoku");
+  let output = document.querySelector("#seikai");
+  input.value = qa[qn][2];
+  imageupdate();
+  output.textContent = "";
+  botan();
+}
+
+function mondai2main(){
+  if(mode==0){
+  w2c++;
+  console.log(w2c);
+  hantei2SubmitByEnter();
+  mondai2();}
+  else{;}
 }
 
 
 
-function enableInput() {
+function ikumae(event){
+  if(event.keyCode == 13){
+    ikuzo();}
+}
+
+function ikumaeSubmitByEnter() {
+  if(mode==2){
   let input = document.querySelector("#nyuryoku");
-  input.addEventListener("keyup", update);
-}*/
+  input.addEventListener("keypress", ikumae);}
+  else{;}
+}
+
+
+function mondai2SubmitByEnter() {
+  let input = document.querySelector("#nyuryoku");
+  input.addEventListener("keypress", watchKeyInput2);
+}
+
+function watchKeyInput2(event){
+  if(event.keyCode == 13){
+    mondai2main();}
+}
+
 
 function hantei() {
+  
+  let qn = randArr[count];
   let input = document.querySelector("#nyuryoku");
-  let kotae = qa[0][1];
-  console.log(input.value);
   let output = document.querySelector("#seikai");
-  if (input.value == kotae) {
+  let kotae=qa[qn][1];
+   if (input.value==kotae){
     output.textContent = "○　" + kotae;
     next();
   } else {
     output.textContent = "×　" + kotae;
+    out();
+  }
+
+}
+
+function hantei2(){
+  let qn = randArr[count];
+  let input = document.querySelector("#nyuryoku");
+  let output = document.querySelector("#seikai");
+let kotae = qa[qn][3];
+    if (input.value == kotae) {
+    output.textContent = "○　" + kotae;
+    mode=2;
+    next2();
+  } else {
+    output.textContent = "×　" + kotae;
+    mode=2;
+    out2();
+  
   }
 }
 
+
 function reset() {
+  if(mode==0){
   let input = document.querySelector("#nyuryoku");
   let output = document.querySelector("#seikai");
   input.value = "";
-  output.value = "";
+  output.value = "";}
+  else{let input = document.querySelector("#nyuryoku");
+  input.value = qa[qn][2];}
+
 }
 
-function next() {
-  document.getElementById("img").src = "img/next.png";
-  document.getElementById("img").src = "img/next.png";
-  document.getElementById("next").innerHTML = "";
+function ikuzo() {
   count++;
-  if (count%2==1){
-  if (count < q_max) {
-    quiz();}
-     else {
-    let input = document.querySelector("#mondai");
-    input.textContent = "お疲れ様でした";}}}
+    if (count < q_max) {
+      document.getElementById("img").onclick = main;
+      let input = document.querySelector("#nyuryoku");
+      mode=3;
+      input.addEventListener("keypress", nikaime);}
+    else {
+      let input = document.querySelector("#mondai");
+      input.textContent = "お疲れ様でした";
+    }
+  }
+
 
 function next(){
   document.getElementById("img").src="img/next.png";
-  let enter = document.querySelector("#nyuryoku");
-  enter.addEventListener("keypress", watchKeyInput2);
+  mondai2SubmitByEnter();
 }
 
 function out(){
   document.getElementById("img").src="img/batsu.png";
-  let enter = document.querySelector("#nyuryoku");
-  enter.addEventListener("keypress", watchKeyInput2);
+  mode2 = 1;
 }
 
+function next2(){
+  document.getElementById("img").src="img/next.png";
+  ikumaeSubmitByEnter();
+}
+
+function out2(){
+  document.getElementById("img").src="img/batsu.png";
+  ikumaeSubmitByEnter();
+}
+
+
 function mondai() {
+  let output = document.querySelector("#seikai");
+  output.value = "";
+  document.getElementById("kaito").innerHTML="";
+  imageupdate();
   let qn = randArr[count];
-  alert(qn);
   document.getElementById("bango").innerHTML = "السُّؤَالُ " + jo[count];
   let input = document.querySelector("#mondai");
   let question = qa[qn][0];
@@ -99,9 +177,41 @@ function mondai() {
 
 function watchKeyInput(event) {
   if (event.keyCode == 13) {
-    hantei();
+    if(mode2==0){hantei();}
+    else if (mode2==1){
+      alert(mode2);
+      mondai2main();}
   }
 }
+
+
+function hantei2SubmitByEnter() {
+  mode=1;
+  if(mode==1){
+  let input = document.querySelector("#nyuryoku");
+  input.addEventListener("keypress", watchKeyInput4);}
+else{;}
+}
+
+function watchKeyInput4(event) {
+  if (event.keyCode == 13) {
+    hantei2();
+  }
+}
+
+function nikaime() {
+  if(mode==3){
+  let input = document.querySelector("#nyuryoku");
+  input.addEventListener("keypress", mainnomae);}
+  else{;}
+}
+
+function mainnomae(event) {
+  if (event.keyCode == 13) {
+    main();
+  }
+}
+
 function enableSubmitByEnter() {
   let input = document.querySelector("#nyuryoku");
   input.addEventListener("keypress", watchKeyInput);
@@ -120,17 +230,22 @@ function kumachange() {
 
 function main() {
   //enableInput();
+  //enableSubmitByEnter();
+  alert(mode);
+  let nyu = document.querySelector("#nyuryoku");
+  nyu.value = "";
+  let sei = document.querySelector("#seikai");
+  sei.value = "";
   enableSubmitByEnter();
   mondai();
   kumachange();
 }
 
 function home() {
+  
   let input = document.querySelector("#mondai");
   input.textContent = "くまを押したらスタート！";
 }
-
-window.addEventListener("load", setReady);
 
 
 
@@ -145,45 +260,115 @@ Goal
 */
 
 
-let sentaku = [
-  { title: "kyasla", img: "images/10607738133_5d763d7c12_z.jpg" ,usu:"ّ";},
+let vowbutton = [
+  {name: "kyasla", img: "img/button/k.png", utsu:"ِ",tan:"ٍ"},
+    {name: "danma", img: "img/button/d.png", utsu:"ُ",tan:"ٌ"},
+  {name:"fatfa",img:"img/button/f.png",utsu:"َ",tan:"ً"},
+  {name:"skun",img:"img/button/s.png",utsu:"ْ",tan:"ْ"},
+{name:"shadda",img:"img/button/sh.png",utsu:"ّ",tan:"ّ"}
 ];
-/*
-function description(imageData) {
-  let el = document.createElement("p");
-  el.textContent = imageData.title;
-  return el;
+
+
+function appen(kazu){
+let textarea = document.querySelector("#nyuryoku");
+var sentence = textarea.value;
+var len      = sentence.length;
+var pos      = textarea.selectionStart;
+var temae   = sentence.substr(pos-1, 1);
+
+if (temae==vowbutton[kazu].utsu){
+var before   = sentence.substr(0, pos-1);
+var word     = vowbutton[kazu].tan;
+var after    = sentence.substr(pos, len);
+sentence = before + word + after;
+textarea.value = sentence;
+textarea.setSelectionRange(pos+1,pos+1);
+}
+else{
+var before   = sentence.substr(0, pos);
+var word     = vowbutton[kazu].utsu;
+var after    = sentence.substr(pos, len);
+
+sentence = before + word + after;
+textarea.value = sentence;
+
+textarea.setSelectionRange(pos+1,pos+1);}
 }
 
-function img(imageData) {
-  let el = document.createElement("img");
-  el.src = imageData.url;
-  el.alt = imageData.title;
-  return el;
+
+var countk=0;
+
+function sh(){
+  let vow = vowbutton;
+  let el = document.createElement("input");
+  el.type = "image";
+  el.height="60";
+  el.src = vow[4].img;
+  el.alt = vow[4].name;
+  var f = "appen(4);";
+  el.setAttribute('onclick', f);
+  var target = document.getElementById("kaito");
+  target.appendChild(el);
 }
 
-function li(imageData) {
-  let el = document.createElement("li");
-  let image = img(imageData);
-  el.appendChild(image);
-
-  let desc = description(imageData);
-  el.appendChild(desc);
-  return el;
+function sk(){
+  let vow = vowbutton;
+  let el = document.createElement("input");
+  el.type = "image";
+  el.height="60";
+  el.src = vow[3].img;
+  el.alt = vow[3].name;
+  var f = "appen(3);";
+  el.setAttribute('onclick', f);
+  var target = document.getElementById("kaito");
+  target.appendChild(el);
 }
 
-function ul(imageList) {
-  let el = document.createElement("ul");
-  let index=0;
-while(index<imageList.length){
-  let image = imageList[index];
-  let renderedImage = li(image);
-  el.appendChild(renderedImage);
-  index = index+1;
-}  return el;
+function fa(){
+  let vow = vowbutton;
+  let el = document.createElement("input");
+  el.type = "image";
+  el.height="60";
+  el.src = vow[2].img;
+  el.alt = vow[2].name;
+  var f = "appen(2);";
+  el.setAttribute('onclick', f);
+  var target = document.getElementById("kaito");
+  target.appendChild(el);
 }
 
-function button() {
-  let el = ul(images);
-  document.body.appendChild(el);
-}*/
+function dm(){
+  let vow = vowbutton;
+  let el = document.createElement("input");
+  el.type = "image";
+  el.height="60";
+  el.src = vow[1].img;
+  el.alt = vow[1].name;
+  var f = "appen(1);";
+  el.setAttribute('onclick', f);
+  var target = document.getElementById("kaito");
+  target.appendChild(el);
+}
+
+function kya() {
+  let vow = vowbutton;
+  let el = document.createElement("input");
+  el.type = "image";
+  el.height="60";
+  el.src = vow[0].img;
+  el.alt = vow[0].name;
+  var eve = "appen(0);";
+  el.setAttribute('onclick', eve);
+  var target = document.getElementById("kaito");
+  target.appendChild(el);
+}
+
+function botan(){
+  sk();
+  sh();
+  kya();
+  dm();
+  fa();
+}
+
+window.addEventListener("load", setReady);
