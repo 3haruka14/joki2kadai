@@ -19,7 +19,6 @@ function setReady() {
   kekka = 0;
   mode = 0;
   mode2 = 0;
-  w2c=0;
   ansers = new Array(); //解答記録
   arr = [1, 2, 3, 4, 5, 0];
   randArr = [];
@@ -32,97 +31,90 @@ function setReady() {
   home();
 }
 
-function mondai2(){
-  mode = 1;
+function enableSubmitByEnter() {
+  let input = document.querySelector("#nyuryoku");
+  input.addEventListener("keypress", watchKeyInput);
+}
+
+function watchKeyInput(event) {
+  if (event.keyCode == 13) {
+    if(mode2==0)
+    {hantei();}
+    else if(mode2==1){
+      mondai();}
+    else if(mode2==2){
+      ikuzo();}
+    else{;}
+  }
+}
+
+
+
+
+function mondai() {
+  mode2=0;
   let qn = randArr[count];
-  let teidai = document.querySelector("#mondai");
+  imageupdate();
+  let output = document.querySelector("#seikai");
+  output.textContent = "";
+  let input = document.querySelector("#mondai");
+  let nyu = document.querySelector("#nyuryoku");
+if(mode==0){
+  document.getElementById("bango").innerHTML = "السُّؤَالُ " + jo[count];
+  document.getElementById("kaito").innerHTML="";
+  nyu.value = "";
+  let question = qa[qn][0];
+  input.textContent = question;}
+else{
+let input = document.querySelector("#mondai");
   let el = document.createElement("p");
   el.textContent = "この文章のすべての文字に発音記号をつけてください";
-  teidai.appendChild(el);
-
-  let input = document.querySelector("#nyuryoku");
-  let output = document.querySelector("#seikai");
-  input.value = qa[qn][2];
-  imageupdate();
-  output.textContent = "";
+  input.appendChild(el);
+  nyu.value = qa[qn][2];
   botan();
 }
-
-function mondai2main(){
-  if(mode==0){
-  w2c++;
-  console.log(w2c);
-  hantei2SubmitByEnter();
-  mondai2();}
-  else{;}
-}
-
-
-
-function ikumae(event){
-  if(event.keyCode == 13){
-    ikuzo();}
-}
-
-function ikumaeSubmitByEnter() {
-  if(mode==2){
-  let input = document.querySelector("#nyuryoku");
-  input.addEventListener("keypress", ikumae);}
-  else{;}
-}
-
-
-function mondai2SubmitByEnter() {
-  let input = document.querySelector("#nyuryoku");
-  input.addEventListener("keypress", watchKeyInput2);
-}
-
-function watchKeyInput2(event){
-  if(event.keyCode == 13){
-    mondai2main();}
 }
 
 
 function hantei() {
-  
   let qn = randArr[count];
   let input = document.querySelector("#nyuryoku");
   let output = document.querySelector("#seikai");
-  let kotae=qa[qn][1];
+  if(mode==0){
+    let kotae=qa[qn][1];
+    mode=1;
+    mode2=1;
    if (input.value==kotae){
     output.textContent = "○　" + kotae;
-    next();
+    document.getElementById("img").src="img/next.png";
   } else {
     output.textContent = "×　" + kotae;
-    out();
-  }
-
-}
-
-function hantei2(){
-  let qn = randArr[count];
-  let input = document.querySelector("#nyuryoku");
-  let output = document.querySelector("#seikai");
-let kotae = qa[qn][3];
+    document.getElementById("img").src="img/batsu.png";
+  }}
+  else{
+    let kotae = qa[qn][3];
+    mode=0;
+    mode2=2;
     if (input.value == kotae) {
     output.textContent = "○　" + kotae;
-    mode=2;
-    next2();
+    document.getElementById("img").src="img/next.png";
   } else {
     output.textContent = "×　" + kotae;
-    mode=2;
-    out2();
-  
+    document.getElementById("img").src="img/batsu.png";
   }
+  }
+
 }
+
 
 
 function reset() {
+  let qn = randArr[count];
   if(mode==0){
   let input = document.querySelector("#nyuryoku");
   let output = document.querySelector("#seikai");
   input.value = "";
-  output.value = "";}
+  output.textContent = "";}
   else{let input = document.querySelector("#nyuryoku");
   input.value = qa[qn][2];}
 
@@ -132,90 +124,23 @@ function ikuzo() {
   count++;
     if (count < q_max) {
       document.getElementById("img").onclick = main;
-      let input = document.querySelector("#nyuryoku");
-      mode=3;
-      input.addEventListener("keypress", nikaime);}
+      mode=0;
+    mondai();}
     else {
-      let input = document.querySelector("#mondai");
-      input.textContent = "お疲れ様でした";
+      mode2=4;
+      reset();
+      let ban = document.querySelector("#bango");
+      let kai = document.querySelector("#kaito");
+      ban.textContent = "";
+      kai.textContent = "";
+      let mon = document.querySelector("#mondai");
+      mon.textContent = "";
+      let input = document.querySelector("#nyuryoku");
+      input.value = "問題は終わりです。お疲れ様でした";
+      document.getElementById("img").src = "img/start.png";
+      document.getElementById("img").onclick = setReady;
     }
   }
-
-
-function next(){
-  document.getElementById("img").src="img/next.png";
-  mondai2SubmitByEnter();
-}
-
-function out(){
-  document.getElementById("img").src="img/batsu.png";
-  mode2 = 1;
-}
-
-function next2(){
-  document.getElementById("img").src="img/next.png";
-  ikumaeSubmitByEnter();
-}
-
-function out2(){
-  document.getElementById("img").src="img/batsu.png";
-  ikumaeSubmitByEnter();
-}
-
-
-function mondai() {
-  let output = document.querySelector("#seikai");
-  output.value = "";
-  document.getElementById("kaito").innerHTML="";
-  imageupdate();
-  let qn = randArr[count];
-  document.getElementById("bango").innerHTML = "السُّؤَالُ " + jo[count];
-  let input = document.querySelector("#mondai");
-  let question = qa[qn][0];
-  input.textContent = question;
-}
-
-function watchKeyInput(event) {
-  if (event.keyCode == 13) {
-    if(mode2==0){hantei();}
-    else if (mode2==1){
-      alert(mode2);
-      mondai2main();}
-  }
-}
-
-
-function hantei2SubmitByEnter() {
-  mode=1;
-  if(mode==1){
-  let input = document.querySelector("#nyuryoku");
-  input.addEventListener("keypress", watchKeyInput4);}
-else{;}
-}
-
-function watchKeyInput4(event) {
-  if (event.keyCode == 13) {
-    hantei2();
-  }
-}
-
-function nikaime() {
-  if(mode==3){
-  let input = document.querySelector("#nyuryoku");
-  input.addEventListener("keypress", mainnomae);}
-  else{;}
-}
-
-function mainnomae(event) {
-  if (event.keyCode == 13) {
-    main();
-  }
-}
-
-function enableSubmitByEnter() {
-  let input = document.querySelector("#nyuryoku");
-  input.addEventListener("keypress", watchKeyInput);
-}
 
 
 function imageupdate() {
@@ -229,22 +154,15 @@ function kumachange() {
 }
 
 function main() {
-  //enableInput();
-  //enableSubmitByEnter();
-  alert(mode);
-  let nyu = document.querySelector("#nyuryoku");
-  nyu.value = "";
-  let sei = document.querySelector("#seikai");
-  sei.value = "";
   enableSubmitByEnter();
   mondai();
   kumachange();
 }
 
 function home() {
-  
   let input = document.querySelector("#mondai");
   input.textContent = "くまを押したらスタート！";
+  document.getElementById("img").onclick = main;
 }
 
 
