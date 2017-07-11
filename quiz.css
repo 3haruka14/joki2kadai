@@ -14,14 +14,12 @@ h1{
 .aso{color:#66c7f4;	font-size:50px;}
 .ara{color:#ff1053;}
 .kazu{color:red; direction: rtl;}
+#bango{color:#ff1053;
+direction:rtl;
+text-align:center;
+}
 
 #container {
-	display: -webkit-box;
-	display: -moz-box;
-	display: box;
-	-webkit-box-orient: vertical;
-	-moz-box-orient: vertical;
-	box-orient: vertical;
 	height: 100%;
 	max-height: 100%;
 	width: 100%;
@@ -45,9 +43,6 @@ h1{
 
 #pare{
 	width: 100%;
-	-webkit-box-flex: 1;
-	-moz-box-flex: 1;
-	box-flex: 1;
 	overflow: auto;
 	position: relative;
 
