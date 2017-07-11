@@ -13,7 +13,7 @@ h1{
 
 .aso{color:#66c7f4;	font-size:50px;}
 .ara{color:#ff1053;}
-#kaito{color:red;}
+.kazu{color:red; direction: rtl;}
 
 #container {
 	display: -webkit-box;
@@ -92,7 +92,7 @@ margin:0 0 0 360px ;}
 
 #mondai
 {
-	height:100px;
+	height:150px;
 	border-bottom: dotted thin #ff5964;
 }
 
@@ -109,18 +109,18 @@ resize: none;
 width:28em;
 	}
 
-#kaito {height:50px;
+#kaito {height:70px;
 padding-left:10px;
 padding-right:20px;
-direction: rtl;
 unicode-bidi: bidi-override;
-border-bottom: dotted thin #ff5964;}
+border-bottom: dotted thin #ff5964;
+text-align: center}
 
 
 
 
 #seikai
- {height:100px;
+ {height:50px;
 	 padding-left:10px;
 	 padding-right:20px;
  color:#ff1053;
