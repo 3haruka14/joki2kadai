@@ -161,7 +161,9 @@ function main() {
 
 function home() {
   let input = document.querySelector("#mondai");
+  mode2=0;
   input.textContent = "くまを押したらスタート！";
+  document.getElementById("img").src = "img/start.png";
   document.getElementById("img").onclick = main;
 }
 
